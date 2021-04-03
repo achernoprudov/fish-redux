@@ -107,7 +107,7 @@ Dispatch createNextDispatch<T>(ContextSys<T> ctx) => (Action action) {
 Dispatch createDispatch<T>(Dispatch onEffect, Dispatch next, Context<T> ctx) =>
     (Action action) {
       final Object result = onEffect?.call(action);
-      if (result == null || result == false) {
+      if (result == null || result == false || result == _SUB_EFFECT_RETURN_NULL) {
         next(action);
       }
 
